@@ -1,0 +1,821 @@
+/* RESET */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+/* FUNDO DO LOGIN */
+
+.login-body {
+
+    height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+
+}
+
+/* CONTAINER */
+
+.login-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* CARD */
+
+.login-card {
+
+    width: 350px;
+
+    padding: 40px;
+
+    border-radius: 16px;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    backdrop-filter: blur(12px);
+
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    text-align: center;
+
+    animation: fadeIn .6s ease;
+
+}
+
+/* TITULO */
+
+.login-title {
+
+    color: white;
+    font-size: 24px;
+    margin-bottom: 25px;
+
+}
+
+/* INPUT GROUP */
+
+.input-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+/* INPUT */
+
+.input-group input {
+
+    width: 100%;
+
+    padding: 12px 14px;
+
+    border-radius: 8px;
+
+    border: none;
+
+    outline: none;
+
+    background: rgba(255, 255, 255, 0.2);
+
+    color: white;
+
+    font-size: 14px;
+
+}
+
+/* PLACEHOLDER */
+
+.input-group input::placeholder {
+    color: #e5e7eb;
+}
+
+/* BOTÃO */
+
+.login-btn {
+
+    width: 100%;
+
+    padding: 12px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #3b82f6;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .25s;
+
+}
+
+.login-btn:hover {
+    background: #2563eb;
+}
+
+/* ANIMAÇÃO */
+
+@keyframes fadeIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+/* DASHBOARD */
+
+.dashboard-body{
+
+height:100vh;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+background:linear-gradient(135deg,#1e3c72,#2a5298);
+
+}
+
+/* CONTAINER */
+
+.dashboard-container{
+width:100%;
+display:flex;
+justify-content:center;
+}
+
+/* CARD */
+
+.dashboard-card{
+
+width:420px;
+
+padding:40px;
+
+border-radius:16px;
+
+background:rgba(255,255,255,0.08);
+
+backdrop-filter:blur(12px);
+
+box-shadow:0 20px 40px rgba(0,0,0,0.25);
+
+border:1px solid rgba(255,255,255,0.2);
+
+text-align:center;
+
+animation:fadeIn .6s ease;
+
+}
+
+/* TITULO */
+
+.dashboard-title{
+
+color:white;
+font-size:26px;
+margin-bottom:5px;
+
+}
+
+.dashboard-subtitle{
+
+color:#dbeafe;
+font-size:14px;
+margin-bottom:30px;
+
+}
+
+/* MENU */
+
+.menu{
+
+display:flex;
+flex-direction:column;
+gap:15px;
+
+}
+
+/* BOTÕES */
+
+.menu-btn{
+
+display:block;
+
+padding:12px;
+
+border-radius:8px;
+
+background:rgba(255,255,255,0.15);
+
+color:white;
+
+text-decoration:none;
+
+font-weight:500;
+
+transition:0.25s;
+
+}
+
+.menu-btn:hover{
+
+background:rgba(255,255,255,0.25);
+
+transform:translateY(-2px);
+
+}
+
+/* BOTÃO SAIR */
+
+.logout{
+
+background:#ef4444;
+
+}
+
+.logout:hover{
+
+background:#dc2626;
+
+}
+
+/* CARD GRANDE */
+
+.dashboard-card-large{
+
+width:900px;
+
+padding:40px;
+
+border-radius:16px;
+
+background:rgba(255,255,255,0.08);
+
+backdrop-filter:blur(12px);
+
+box-shadow:0 20px 40px rgba(0,0,0,0.25);
+
+border:1px solid rgba(255,255,255,0.2);
+
+text-align:center;
+
+animation:fadeIn .6s ease;
+
+}
+
+/* FORM GRID */
+
+.form-grid{
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:15px;
+
+margin-bottom:30px;
+
+}
+
+.form-grid input,
+.form-grid select{
+
+padding:12px;
+
+border-radius:8px;
+
+border:none;
+
+outline:none;
+
+background:rgba(255,255,255,0.2);
+
+color:white;
+
+}
+
+/* SELECT */
+
+.form-grid select option{
+color:black;
+}
+
+/* TITULO TABELA */
+
+.table-title{
+
+color:white;
+
+margin:20px 0;
+
+}
+
+/* TABELA */
+
+.table-container{
+
+overflow-x:auto;
+
+}
+
+.styled-table{
+
+width:100%;
+
+border-collapse:collapse;
+
+color:white;
+
+}
+
+.styled-table th{
+
+background:#3b82f6;
+
+padding:12px;
+
+}
+
+.styled-table td{
+
+padding:12px;
+
+border-bottom:1px solid rgba(255,255,255,0.2);
+
+}
+
+/* BOTÕES */
+
+.btn-edit{
+
+background:#22c55e;
+
+padding:6px 10px;
+
+border-radius:6px;
+
+text-decoration:none;
+
+color:white;
+
+margin-right:5px;
+
+font-size:13px;
+
+}
+
+.btn-delete{
+
+background:#ef4444;
+
+padding:6px 10px;
+
+border-radius:6px;
+
+text-decoration:none;
+
+color:white;
+
+font-size:13px;
+
+}
+
+.btn-edit:hover{
+background:#16a34a;
+}
+
+.btn-delete:hover{
+background:#dc2626;
+}
+/* FORM VOLUNTARIOS */
+
+.form-voluntario{
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:20px;
+
+margin-top:20px;
+
+max-width:600px;
+
+margin-left:auto;
+margin-right:auto;
+
+}
+
+/* GROUP */
+
+.form-group{
+
+display:flex;
+flex-direction:column;
+text-align:left;
+
+}
+
+/* LABEL */
+
+.form-group label{
+
+color:white;
+font-size:13px;
+margin-bottom:6px;
+opacity:0.9;
+
+}
+
+/* INPUTS */
+
+.form-group input,
+.form-group select{
+
+padding:8px;
+
+border-radius:8px;
+
+border:none;
+
+outline:none;
+
+background:rgba(255,255,255,0.18);
+
+color:white;
+
+font-size:14px;
+
+display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+}
+
+/* PLACEHOLDER */
+
+.form-group input::placeholder{
+
+color:#d1d5db;
+
+}
+
+/* SELECT OPTION */
+
+.form-group select option{
+
+color:black;
+
+}
+
+/* BOTÃO */
+
+.form-btn{
+
+grid-column:span 2;
+
+display:flex;
+justify-content:center;
+
+margin-top:10px;
+
+}
+
+.btn-primary{
+
+padding:12px 28px;
+
+border:none;
+
+border-radius:8px;
+
+background:linear-gradient(135deg,#3b82f6,#2563eb);
+
+color:white;
+
+font-weight:600;
+
+cursor:pointer;
+
+transition:.25s;
+
+}
+
+.btn-primary:hover{
+
+transform:translateY(-2px);
+
+box-shadow:0 8px 20px rgba(0,0,0,0.25);
+
+}
+
+/* GRID VOLUNTARIOS */
+
+.voluntarios-grid{
+
+display:grid;
+
+grid-template-columns:repeat(3,1fr);
+
+gap:12px;
+
+margin:20px 0;
+
+}
+
+/* ITEM VOLUNTARIO */
+
+.voluntario-item{
+
+display:flex;
+
+align-items:center;
+
+gap:10px;
+
+padding:10px;
+
+border-radius:8px;
+
+background:rgba(255,255,255,0.12);
+
+color:white;
+
+cursor:pointer;
+
+transition:0.2s;
+
+}
+
+.voluntario-item:hover{
+
+background:rgba(255,255,255,0.22);
+
+}
+
+/* CHECKBOX */
+
+.voluntario-item input{
+
+accent-color:#3b82f6;
+
+}
+
+/* GRID DATA E CULTO */
+
+.form-grid{
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:20px;
+
+margin-bottom:25px;
+
+}
+
+/* GRID MINISTERIOS */
+
+.ministerios-grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+gap:20px;
+
+margin-top:20px;
+
+}
+
+/* CARD MINISTERIO */
+
+.ministerio-card{
+
+background:rgba(255,255,255,0.12);
+
+padding:15px;
+
+border-radius:10px;
+
+border:1px solid rgba(255,255,255,0.2);
+
+color:white;
+
+}
+
+/* TITULO MINISTERIO */
+
+.ministerio-card h4{
+
+margin-bottom:10px;
+
+padding-bottom:5px;
+
+border-bottom:1px solid rgba(255,255,255,0.2);
+
+}
+
+/* VOLUNTARIOS */
+
+.voluntario-item{
+
+display:flex;
+
+align-items:center;
+
+gap:8px;
+
+margin-bottom:6px;
+
+cursor:pointer;
+
+}
+
+.voluntario-item input{
+
+accent-color:#3b82f6;
+
+cursor:pointer;
+
+}
+/* ===== TABELA MODERNA ===== */
+
+.table-modern{
+
+width:100%;
+
+border-collapse:collapse;
+
+margin-top:20px;
+
+color:white;
+
+}
+
+/* HEADER */
+
+.table-modern th{
+
+padding:12px;
+
+text-align:left;
+
+border-bottom:2px solid rgba(255,255,255,0.2);
+
+font-weight:600;
+
+}
+
+/* CELULAS */
+
+.table-modern td{
+
+padding:12px;
+
+border-bottom:1px solid rgba(255,255,255,0.1);
+
+}
+
+/* HOVER */
+
+.table-modern tr:hover{
+
+background:rgba(255,255,255,0.08);
+
+}
+
+/* AÇÕES */
+
+.acoes{
+
+display:flex;
+
+gap:10px;
+
+}
+
+/* BOTÕES */
+
+.btn-action{
+
+padding:6px 12px;
+
+border-radius:6px;
+
+text-decoration:none;
+
+font-size:13px;
+
+color:white;
+
+transition:.2s;
+
+}
+
+/* CORES */
+
+.btn-action.ver{
+
+background:#3b82f6;
+
+}
+
+.btn-action.editar{
+
+background:#f59e0b;
+
+}
+
+.btn-action.excluir{
+
+background:#ef4444;
+
+}
+
+.btn-action:hover{
+
+transform:translateY(-2px);
+
+opacity:0.9;
+
+}
+/* STATUS */
+
+.status{
+
+font-weight:600;
+
+}
+
+.status.confirmado{
+
+color:#22c55e;
+
+}
+
+.status.recusado{
+
+color:#ef4444;
+
+}
+
+.status.pendente{
+
+color:#f59e0b;
+
+}
+
+/* BOTÕES VOLUNTARIO */
+
+.btn-action.confirmar{
+
+background:#22c55e;
+
+}
+
+.btn-action.recusar{
+
+background:#ef4444;
+
+}
+
+.btn-action.sair{
+
+background:#64748b;
+
+display:inline-block;
+
+margin-top:10px;
+
+}
