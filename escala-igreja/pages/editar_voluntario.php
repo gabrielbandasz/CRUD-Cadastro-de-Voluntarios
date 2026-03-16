@@ -29,7 +29,7 @@ $voluntario = $result->fetch_assoc();
 </head>
 
 <body class="dashboard-body">
-
+<?php include("../includes/sidebar.php"); ?>
 <div class="dashboard-container">
 
 <div class="dashboard-card">

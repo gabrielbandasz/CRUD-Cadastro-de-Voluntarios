@@ -7,6 +7,31 @@ exit;
 }
 
 include("../config/conexao.php");
+
+/* pegar ministerio do líder */
+
+$usuario_id = $_SESSION['usuario_id'];
+
+$sql_user = "SELECT ministerio_id FROM usuarios WHERE id = $usuario_id";
+$result_user = $conn->query($sql_user);
+$user = $result_user->fetch_assoc();
+
+$ministerio_id = $user['ministerio_id'];
+
+/* buscar escalas apenas do ministério */
+
+$sql = "SELECT escalas.*
+FROM escalas
+JOIN escala_voluntarios 
+ON escalas.id = escala_voluntarios.escala_id
+JOIN voluntarios 
+ON voluntarios.id = escala_voluntarios.voluntario_id
+WHERE voluntarios.ministerio_id = $ministerio_id
+GROUP BY escalas.id
+ORDER BY escalas.data DESC";
+
+$result = $conn->query($sql);
+
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +49,7 @@ include("../config/conexao.php");
 </head>
 
 <body class="dashboard-body">
-
+<?php include("../includes/sidebar.php"); ?>
 <div class="dashboard-container">
 
 <div class="dashboard-card-large">
@@ -42,9 +67,6 @@ include("../config/conexao.php");
 
 <?php
 
-$sql = "SELECT * FROM escalas ORDER BY data DESC";
-$result = $conn->query($sql);
-
 while($escala = $result->fetch_assoc()){
 
 $escala_id = $escala['id'];
@@ -56,7 +78,8 @@ echo "<td>".$escala['culto']."</td>";
 
 $sql2 = "SELECT voluntarios.nome
 FROM escala_voluntarios
-JOIN voluntarios ON voluntarios.id = escala_voluntarios.voluntario_id
+JOIN voluntarios 
+ON voluntarios.id = escala_voluntarios.voluntario_id
 WHERE escala_voluntarios.escala_id = $escala_id";
 
 $result2 = $conn->query($sql2);
@@ -79,6 +102,7 @@ echo "<a class='btn-action excluir' href='excluir_escala.php?id=".$escala_id."'
 onclick='return confirm(\"Tem certeza que deseja excluir esta escala?\")'>
 Excluir
 </a>";
+echo "<a class='btn-action pdf' href='gerar_pdf.php?id=".$escala_id."' target='_blank'>PDF</a>";
 
 echo "</td>";
 

@@ -17,7 +17,6 @@ session_start();
 </head>
 
 <body class="dashboard-body">
-
 <div class="dashboard-container">
 
 <div class="dashboard-card">
@@ -26,7 +25,9 @@ session_start();
 <p class="dashboard-subtitle">Painel administrativo</p>
 
 <div class="menu">
-
+<a href="pages/dashboard.php" class="menu-btn">
+Dashboard
+</a>
 <a href="pages/voluntarios.php" class="menu-btn">
 Cadastrar Voluntários
 </a>

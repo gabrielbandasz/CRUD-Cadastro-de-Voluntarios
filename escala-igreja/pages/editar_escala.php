@@ -3,8 +3,33 @@
 session_start();
 include("../config/conexao.php");
 
-if(!isset($_SESSION['tipo']) || $_SESSION['tipo'] != 'admin'){
-header("Location: ../login.php");
+$usuario_id = $_SESSION['usuario_id'];
+
+/* pegar ministerio do lider */
+
+$sql_user = "SELECT ministerio_id FROM usuarios WHERE id = $usuario_id";
+$result_user = $conn->query($sql_user);
+$user = $result_user->fetch_assoc();
+
+$ministerio_id = $user['ministerio_id'];
+
+$escala_id = $_GET['id'];
+
+/* verificar se escala pertence ao ministerio */
+
+$sql_check = "SELECT escalas.id
+FROM escalas
+JOIN escala_voluntarios 
+ON escalas.id = escala_voluntarios.escala_id
+JOIN voluntarios 
+ON voluntarios.id = escala_voluntarios.voluntario_id
+WHERE escalas.id = $escala_id
+AND voluntarios.ministerio_id = $ministerio_id";
+
+$result_check = $conn->query($sql_check);
+
+if($result_check->num_rows == 0){
+echo "Acesso negado.";
 exit;
 }
 
@@ -42,7 +67,7 @@ $voluntarios_escala[] = $v['voluntario_id'];
 </head>
 
 <body class="dashboard-body">
-
+<?php include("../includes/sidebar.php"); ?>
 <div class="dashboard-container">
 
 <div class="dashboard-card-large">

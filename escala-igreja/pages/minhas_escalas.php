@@ -3,6 +3,8 @@
 session_start();
 include("../config/conexao.php");
 
+/* verificar login */
+
 if(!isset($_SESSION['usuario_id'])){
 header("Location: ../login.php");
 exit;
@@ -18,11 +20,17 @@ $usuario = $result_usuario->fetch_assoc();
 
 $email = $usuario['email'];
 
-/* achar voluntario */
+/* buscar voluntario pelo email */
 
 $sql_voluntario = "SELECT id FROM voluntarios WHERE email='$email'";
 $result_voluntario = $conn->query($sql_voluntario);
 $voluntario = $result_voluntario->fetch_assoc();
+
+$voluntario_id = null;
+$result = false;
+$pendentes_total = 0;
+
+if($voluntario){
 
 $voluntario_id = $voluntario['id'];
 
@@ -35,6 +43,19 @@ WHERE escala_voluntarios.voluntario_id = $voluntario_id
 ORDER BY escalas.data ASC";
 
 $result = $conn->query($sql);
+
+/* buscar pendentes */
+
+$sql_pendentes = "SELECT COUNT(*) AS total
+FROM escala_voluntarios
+WHERE voluntario_id = $voluntario_id
+AND status = 'pendente'";
+
+$result_pendentes = $conn->query($sql_pendentes);
+$pendentes = $result_pendentes->fetch_assoc();
+$pendentes_total = $pendentes['total'];
+
+}
 
 ?>
 
@@ -53,12 +74,20 @@ $result = $conn->query($sql);
 </head>
 
 <body class="dashboard-body">
-
+<?php include("../includes/sidebar.php"); ?>
 <div class="dashboard-container">
 
 <div class="dashboard-card-large">
 
 <h2 class="dashboard-title">Minhas Escalas</h2>
+
+<?php
+if($pendentes_total > 0){
+echo "<div class='alerta'>
+🔔 Você tem $pendentes_total escala(s) pendente(s) para confirmar
+</div>";
+}
+?>
 
 <table class="table-modern">
 
@@ -71,16 +100,20 @@ $result = $conn->query($sql);
 
 <?php
 
+if($result && $result->num_rows > 0){
+
 while($row = $result->fetch_assoc()){
 
 echo "<tr>";
 
-echo "<td>".$row['data']."</td>";
+$data = date("d/m/Y", strtotime($row['data']));
+
+echo "<td>$data</td>";
 echo "<td>".$row['culto']."</td>";
 
-/* STATUS */
-
 $status = $row['status'];
+
+/* status */
 
 if($status == "confirmado"){
 echo "<td class='status confirmado'>Confirmado</td>";
@@ -92,14 +125,20 @@ else{
 echo "<td class='status pendente'>Pendente</td>";
 }
 
-/* AÇÕES */
+/* ações */
 
 if($status == "pendente"){
 
 echo "<td class='acoes'>
-<a class='btn-action confirmar' href='confirmar.php?id=".$row['id']."&status=confirmado'>Confirmar</a>
 
-<a class='btn-action recusar' href='confirmar.php?id=".$row['id']."&status=recusado'>Recusar</a>
+<a class='btn-action confirmar' href='confirmar.php?id=".$row['id']."&status=confirmado'>
+Confirmar
+</a>
+
+<a class='btn-action recusar' href='confirmar.php?id=".$row['id']."&status=recusado'>
+Recusar
+</a>
+
 </td>";
 
 }else{
@@ -108,6 +147,14 @@ echo "<td>-</td>";
 
 }
 
+echo "</tr>";
+
+}
+
+}else{
+
+echo "<tr>";
+echo "<td colspan='4'>Nenhuma escala encontrada</td>";
 echo "</tr>";
 
 }

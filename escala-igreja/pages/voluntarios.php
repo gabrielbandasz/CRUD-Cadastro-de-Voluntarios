@@ -7,6 +7,16 @@ exit;
 }
 
 include("../config/conexao.php");
+
+$usuario_id = $_SESSION['usuario_id'];
+
+/* pegar ministerio do lider */
+
+$sql_user = "SELECT ministerio_id FROM usuarios WHERE id = $usuario_id";
+$result_user = $conn->query($sql_user);
+$user = $result_user->fetch_assoc();
+
+$ministerio_id = $user['ministerio_id'];
 ?>
 
 <!DOCTYPE html>
@@ -24,6 +34,8 @@ include("../config/conexao.php");
 </head>
 
 <body class="dashboard-body">
+
+<?php include("../includes/sidebar.php"); ?>
 
 <div class="dashboard-container">
 
@@ -55,8 +67,6 @@ include("../config/conexao.php");
 
 <option value="">Selecione o ministério</option>
 
-
-
 <?php
 
 $sql = "SELECT * FROM ministerios";
@@ -78,7 +88,6 @@ echo "<option value='".$row['id']."'>".$row['nome']."</option>";
 
 </form>
 
-
 <h2 class="table-title">Voluntários cadastrados</h2>
 
 <div class="table-container">
@@ -98,7 +107,8 @@ echo "<option value='".$row['id']."'>".$row['nome']."</option>";
 $sql = "SELECT voluntarios.*, ministerios.nome AS ministerio_nome
 FROM voluntarios
 LEFT JOIN ministerios
-ON voluntarios.ministerio_id = ministerios.id";
+ON voluntarios.ministerio_id = ministerios.id
+WHERE voluntarios.ministerio_id = $ministerio_id";
 
 $result = $conn->query($sql);
 
@@ -115,7 +125,7 @@ echo "<td>
 
 <a class='btn-edit' href='editar_voluntario.php?id=".$row['id']."'>Editar</a>
 
-<a class='btn-delete' href='excluir_voluntario.php?id=".$row['id']."'>Excluir</a>
+<a class='btn-delete' href='excluir_voluntario.php?id=".$row['id']."' onclick='return confirm(\"Tem certeza?\")'>Excluir</a>
 
 </td>";
 
@@ -130,6 +140,7 @@ echo "</tr>";
 </div>
 
 </div>
+
 </div>
 
 </body>
